@@ -10,6 +10,9 @@
 		<?php foreach($detailid as $product): ?>
 		 <li><?php echo $product['title'] ?></li>
 		 <?php endforeach ?>
+		 
+
 	 </ul>
+	 
 </body>
 </html>

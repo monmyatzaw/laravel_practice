@@ -14,6 +14,17 @@ class FirstEgController extends Controller
  [ "id" => 1, "title" => "MacBook" ],
  [ "id" => 2, "title" => "iPhone" ],
  ];
+// $num_data = [
+// 1 => [
+//         $title => 'MacBook';
+//         $content => 'This is the content for product 1.';
+//  ] 2=> [
+//         $title => 'iPhone';
+//         $content => 'This is the content for product 2.';
+//     ] else {
+//         $title = 'Unknown Product';
+//         $content = 'Product not found.';
+//     }];
  return view('practice.detail-id', [
  'detailid' => $num_data ]);
 }
