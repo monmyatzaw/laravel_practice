@@ -11,7 +11,7 @@ Route::get('/articles/more', function() {
  return redirect()->route('article.detail');
 });
 use App\Http\Controllers\ArticleController;
-
+use App\Models\Article;
 Route::get('/articles', [ArticleController::class, 'index']);
 Route::get('/articles/detail/{id}', [ArticleController::class, 'detail']);
 
@@ -25,3 +25,10 @@ Route::get('/products/more', function() {
 Route::get('/products', [FirstEgController::class, 'products']);
 Route::get('/products/detail/{id}', [FirstEgController::class, 'detail_id']);
 Route::get('/products/detail', [FirstEgController::class, 'detail']);
+
+
+
+// Route::get('/test-dd', function () {
+//     $articles= Article::all();
+//     dd($articles);   
+// });
