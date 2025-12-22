@@ -7,9 +7,11 @@
 <body>
 	 <h1>Article List</h1>
 	 <ul>
-		<?php foreach($articles as $article): ?>
-		 <li><?php echo $article['title'] ?></li>
-		 <?php endforeach ?>
+		<?php  ?>
+		 <li><?php echo $articles['title'] ?></li>
+		 <?php  ?>
 	 </ul>
 </body>
 </html>
+
+<!-- foreach($articles as $article): endforeach -->
