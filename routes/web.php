@@ -26,6 +26,10 @@ Route::get('/products', [FirstEgController::class, 'products']);
 Route::get('/products/detail/{id}', [FirstEgController::class, 'detail_id']);
 Route::get('/products/detail', [FirstEgController::class, 'detail']);
 
+use App\Http\Controllers\MovieController;
+
+Route::get('/dd_movies', [MovieController::class, 'index']);
+
 
 
 // Route::get('/test-dd', function () {
