@@ -6,7 +6,8 @@ use App\Models\Product;
 use App\Models\Movie;
 use App\Models\Profile;
 use App\Models\Post;
-
+use App\Models\PostUserLike;
+use App\Models\Comment;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,8 +21,10 @@ class DatabaseSeeder extends Seeder
         //Article::factory(10)->create();
         //Product::factory(11)->create();
         // Movie::factory(15)->create();
-        Profile::factory(3)->create();
-        //Post::factory(12)->create();
+        // Profile::factory(3)->create();
+        // Post::factory(12)->create();
+        // PostUserLike::factory(12)->create();
+        // Comment::factory(12)->create();
 
         // User::factory()->create([
         //     'name' => 'Test User',

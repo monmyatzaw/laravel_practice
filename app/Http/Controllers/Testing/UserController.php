@@ -27,4 +27,22 @@ class UserController extends Controller
         // $user_id = $user->profile->user_id;
         // dd($bio, $user_id);
     }
+     public function postList() {
+        $user = User::with('posts')->find(3);
+        $posts = $user->posts;
+        dd($posts);
+
+        // $user_posts  = User::find(3)->posts;
+        // dd($user_posts);
+
+        // $user_posts  = User::find(3)->posts;
+        // foreach($user_posts as $user_post) 
+        //     {$user_post_title[] = $user_post->title;}
+        // dd($user_post_title);
+    }
+    public function showComments(){
+        $user_cmt = User::with('userComments')->get(); 
+
+        dd($user_cmt);
+    }
 }

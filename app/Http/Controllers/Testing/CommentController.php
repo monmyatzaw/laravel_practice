@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Testing;
-
+use App\Models\User;
+use App\Models\Comment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ExampleController extends Controller
+class CommentController extends Controller
 {
     //
 }

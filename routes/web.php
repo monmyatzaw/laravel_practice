@@ -28,6 +28,17 @@ Route::get('/profiles/detail', [ProfileController::class, 'index']);
 
 use App\Http\Controllers\Testing\UserController;
 Route::get('/users/detail', [UserController::class, 'index']);
+Route::get('/post-list', [UserController::class, 'postList']);
+Route::get('/user/comments', [UserController::class, 'showComments']);
+
+use App\Http\Controllers\Testing\LikeController;
+Route::get('/user/likes', [LikeController::class, 'showLikedPosts']);
+Route::get('/post/likers', [LikeController::class, 'showPostLikers']);
+
+use App\Http\Controllers\PostController;
+Route::get('/post-user', [PostController::class, 'postedUser']);
+
+use App\Http\Controllers\Testing\CommentController;
 
 
 // Route::get('/test-dd', function () {

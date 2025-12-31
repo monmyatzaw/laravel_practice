@@ -11,6 +11,14 @@ class User extends Authenticatable
 {
     public function profile()
     {return $this->hasOne(Profile::class);}
+    public function posts() 
+    { return $this->hasMany(Post::class); }
+    public function likedPosts()
+    {return $this->belongsToMany(Post::class, 'post_user_likes')->withTimestamps();}
+    
+    public function userComments()
+    {return $this->hasMany(Comment::class); }
+    
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 

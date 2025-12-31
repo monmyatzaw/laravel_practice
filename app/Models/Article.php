@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,4 +11,9 @@ class Article extends Model
         'body',
         'category_id',
     ];
+    //  public function getUpperTitle()
+    // {
+    //     dd($this->title);
+    //     return strtoupper($this->title);
+    // }
 }
