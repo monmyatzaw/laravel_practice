@@ -19,6 +19,28 @@ class User extends Authenticatable
     public function userComments()
     {return $this->hasMany(Comment::class); }
     
+    // access a model's only one record of data through a model, no direct FK
+
+    public function latestCommentThroughPost() {
+  return $this->hasOneThrough(
+      Comment::class,  // Final model (C)
+      Post::class,     // Intermediate model (B)
+      'user_id',       // FK on posts table  posts.user_id
+      'post_id',       // FK on comments table  comments.post_id
+      'id',            // PK on users table
+      'id'             // PK on posts table
+  )->latestOfMany(); // user gets the latest comment of a post
+ }
+    public function commentsThroughPosts() {
+    return $this->hasManyThrough(
+        Comment::class, // Final model (C)
+        Post::class,    // Intermediate model (B)
+        'user_id',      // FK on posts table posts.user_id
+        'post_id',      // FK on comments table comments.post_id
+        'id',           // PK on users table
+        'id'            // PK on posts table
+    ); // access a model's records through another model
+}
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 

@@ -30,7 +30,11 @@ use App\Http\Controllers\Testing\UserController;
 Route::get('/users/detail', [UserController::class, 'index']);
 Route::get('/post-list', [UserController::class, 'postList']);
 Route::get('/user/comments', [UserController::class, 'showComments']);
+Route::get('/user/{id}/latest-comment', [UserController::class, 'showLatestComment']);
+// output of url 'http://127.0.0.1:8000/user/3/latest-comment' is "beautiful!!"
 
+Route::get('/user/{id}/comments', [UserController::class, 'showUserComments']);
+// output of 'http://127.0.0.1:8000/user/3/comments' is 'very good!' and 'beautiful!!'
 use App\Http\Controllers\Testing\LikeController;
 Route::get('/user/likes', [LikeController::class, 'showLikedPosts']);
 Route::get('/post/likers', [LikeController::class, 'showPostLikers']);
