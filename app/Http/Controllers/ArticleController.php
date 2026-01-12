@@ -25,7 +25,9 @@ class ArticleController extends Controller
     return view('articles.index', ['articles' => $data]);
   }
 
-
+public function a_detail()
+{ $data = Article::all();
+  return view('articles.index', ['articles' => $data]);}
 
  public function detail($id)
  {  // 	 return "Controller - Article Detail - $id";}

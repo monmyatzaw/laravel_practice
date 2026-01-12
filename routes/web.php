@@ -1,51 +1,31 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-// Route::get('/articles/detail/{id}', function ( $id ) {
-//  return "Article Detail - $id";
-// });
-Route::get('/articles/detail', function () {
- return 'Article Detail';
-})->name('article.detail');
-Route::get('/articles/more', function() {
- return redirect()->route('article.detail');
+
+Route::get('/', function () {
+    return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::get('/admin', function () {
+    return 'Admin Page - Only admin can access';
+})->middleware('check.email');
+Route::get('/masteradmin', function () {
+    return 'Master Admin Page - Only master admin can access';
+})->middleware('checkm.admin');
+
+require __DIR__.'/auth.php';
+
 use App\Http\Controllers\ArticleController;
-use App\Models\Article;
-Route::get('/articles', [ArticleController::class, 'index']);
+Route::get('/articles-detail', [ArticleController::class, 'a_detail']);
 Route::get('/articles/detail/{id}', [ArticleController::class, 'detail']);
-
-use App\Http\Controllers\Testing\FirstEgController;
-Route::get('/products', [FirstEgController::class, 'products']);
-Route::get('/products/detail/{id}', [FirstEgController::class, 'detail_id']);
-Route::get('/products/detail', [FirstEgController::class, 'detail']);
-
-use App\Http\Controllers\MovieController;
-Route::get('/dd-movies', [MovieController::class, 'index']);
-
-use App\Http\Controllers\Testing\ProfileController;
-Route::get('/profiles/detail', [ProfileController::class, 'index']);
-
-use App\Http\Controllers\Testing\UserController;
-Route::get('/users/detail', [UserController::class, 'index']);
-Route::get('/post-list', [UserController::class, 'postList']);
-Route::get('/user/comments', [UserController::class, 'showComments']);
-Route::get('/user/{id}/latest-comment', [UserController::class, 'showLatestComment']);
-// output of url 'http://127.0.0.1:8000/user/3/latest-comment' is "beautiful!!"
-
-Route::get('/user/{id}/comments', [UserController::class, 'showUserComments']);
-// output of 'http://127.0.0.1:8000/user/3/comments' is 'very good!' and 'beautiful!!'
-use App\Http\Controllers\Testing\LikeController;
-Route::get('/user/likes', [LikeController::class, 'showLikedPosts']);
-Route::get('/post/likers', [LikeController::class, 'showPostLikers']);
-
-use App\Http\Controllers\PostController;
-Route::get('/post-user', [PostController::class, 'postedUser']);
-
-use App\Http\Controllers\Testing\CommentController;
-
-
-// Route::get('/test-dd', function () {
-//     $articles= Article::all();
-//     dd($articles);   
-// });

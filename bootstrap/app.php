@@ -10,9 +10,17 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
+
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // alias(is nickname) middleware should match name in (route middleware)
+    $middleware->alias([
+        'check.email' => \App\Http\Middleware\CheckEmail::class,
+    ]);
+    $middleware->alias([
+        'checkm.admin' => \App\Http\Middleware\CheckAdminName::class,
+    ]);
     })
+    
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();
