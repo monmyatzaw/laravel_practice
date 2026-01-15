@@ -19,9 +19,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/articles-lists', [ArticleController::class, 'a_detail']);
     Route::get('/articles/create', [ArticleController::class, 'create']);
 	Route::post('/articles/store', [ArticleController::class, 'store']);
-
+    Route::get('/articles/lists', [ArticleController::class, 'article_lists']);
+    Route::get('/articles/edit/{id}', [ArticleController::class, 'edit']);
+    Route::put('/articles/update/{id}', [ArticleController::class, 'update']);
+    Route::delete('/articles/delete/{id}', [ArticleController::class, 'destroy']);
 });
-
+// photo evidences are uploaded in Teams. Laravel>Mon Myat Zaw>photo evidences
 Route::get('/admin', function () {
     return 'Admin Page - Only admin can access';
 })->middleware('check.email');

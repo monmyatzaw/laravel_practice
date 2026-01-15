@@ -20,7 +20,6 @@ class ArticleController extends Controller
     // $data->update(['title' => 'Updated']);
      $data =Article::find(13)->delete();
 
-
     dd($data);
     return view('articles.index', ['articles' => $data]);
   }
@@ -52,19 +51,48 @@ public function store(Request $request)
     return redirect('/articles/create')->with('success', 'Article created successfully!');
 // redirect back to create article page
   }
+public function article_lists()
+{
+    $articles = Article::all();
+    return view('articles.articlelists', compact('articles'));
+}
+public function edit($id)
+{
+    $article = Article::findOrFail($id); // find id, show error msg if can't be found
+    return view('articles.edit', compact('article'));
+}
+public function update(Request $request, $id)
+  {
+      $article = Article::findOrFail($id);
 
- public function detail($id)
- {  // 	 return "Controller - Article Detail - $id";}
+      $article->update([
+          'title' => $request->title,
+          'body' => $request->body,
+          'category_id' => $request->category_id,
+          // Request $request saves data into these values
+      ]);
 
-// public function index()
-// {return view('articles.index');
+      return redirect('/articles/lists');
+  }
+  public function destroy($id)
+{
+    $article = Article::findOrFail($id);
+    $article->delete();
+
+    return redirect('/articles/lists');
+}
+
+
+
+public function detail($id)
+{	// return "Controller - Article Detail - $id";}
  $data = [
  [ "id" => 1, "title" => "First Article" ],
  [ "id" => 2, "title" => "Second Article" ],
  ];
  return view('articles.index', ['articles' => $data  
 // articles is template in view, $data is data in Array Format in controller
-// 'articles' => $data လို့ ရေးထားတဲ့အတွက် $data ကို articles အနေနဲ့ပေးလိုက်တာပါ။ 
+// 'articles' => $data  | $data ကို articles အနေနဲ့ပေးလိုက်တာပါ။ 
 // ဒီလိုပေးလိုက်တဲ့အတွက်Template မှာ $articles Variable ကို သုံးလို့ရသွားပါလိမ့်မယ်။
   ]);
 }
