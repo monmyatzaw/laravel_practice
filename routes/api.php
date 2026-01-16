@@ -10,5 +10,7 @@ Route::put('/articles/{id}', [ArticleApiController::class,'update']);
 Route::patch('/articles/{id}', [ArticleApiController::class,'update']);
 Route::delete('/articles/{id}', [ArticleApiController::class,'delete']);
 
+// photo evidences are in Teams, Laravel folder>Mon Myat Zaw>API photo evidences
+
 // Route::apiResource('/articles', 'ArticleApiController');
 // url is /api/articles
